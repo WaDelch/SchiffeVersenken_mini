@@ -78,7 +78,7 @@ namespace SchiffeVersenken_mini
                 pField[shot] = "x";
 
             }
-            Console.Clear();
+
             do
             {
                 Console.Clear();
