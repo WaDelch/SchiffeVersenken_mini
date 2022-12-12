@@ -13,11 +13,11 @@ namespace SchiffeVersenken_mini
             for (int i = 1; i < 17; i++)
             {
                 if (pField[i - 1] == "~")
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.DarkCyan; //blue water
                 else if (pField[i - 1] == "X")
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red; //red hit mark
                 else
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Gray; //gray numbers
 
                 if (pField[i - 1] == "0" || pField[i - 1] == "x")
                     Console.Write(i + "\t");
@@ -91,18 +91,18 @@ namespace SchiffeVersenken_mini
                 Console.WriteLine("Auf welches Feld wollen Sie schießen? (0 = Spiel beenden)");
                 if (!CheckShot())
                     return;
-                shot--; //gleicht Eingabe an den Array-Index an
-                if (pField[shot] == "0") //verfehlt
+                shot--; //input = array index
+                if (pField[shot] == "0") //miss
                 {
-                    pField[shot] = "~"; //markiere verfehltes Feld
+                    pField[shot] = "~"; //mark missed field
                     RocketAnim();
                 }
-                else if (pField[shot] == "x") //getroffen
+                else if (pField[shot] == "x") //hit
                 {
-                    pField[shot] = "X"; //markiere getroffenes Feld
+                    pField[shot] = "X"; //mark hit field
                     RocketAnim();
                 }
-                else if (pField[shot] == "X" || pField[shot] == "~") //bereits abgeschossen
+                else if (pField[shot] == "X" || pField[shot] == "~") //already hit
                 {
                     failShot = true;
                     continue;
@@ -122,7 +122,7 @@ namespace SchiffeVersenken_mini
             int tempCursX = Console.CursorLeft;
             int tempCursY = Console.CursorTop;
             int buff = 0;
-            Console.CursorVisible = false;
+            Console.CursorVisible = false; //removes blinking cursor during animation
             for (int i = 0; i < 22; i++)
             {
                 Console.SetCursorPosition(70 + buff, 3);
@@ -156,7 +156,7 @@ namespace SchiffeVersenken_mini
             while (true)
             {
                 ship2 = rnd.Next(1, 17);
-                if (((ship1 - 1) % 4 == 0 && ship2 == ship1 - 1) || (ship1 % 4 == 0 && ship2 == ship1 + 1))//checks forst and last column
+                if (((ship1 - 1) % 4 == 0 && ship2 == ship1 - 1) || (ship1 % 4 == 0 && ship2 == ship1 + 1))//checks first and last column
                     continue;
                 else if (Math.Abs(ship1 - ship2) != 1 && Math.Abs(ship1 - ship2) != 4) //checks inner fields
                     continue;
